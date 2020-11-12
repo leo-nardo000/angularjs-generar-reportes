@@ -1,0 +1,83 @@
+.navegacion{
+    text-align: center;
+    padding: 10px;
+}
+
+.navegacion .menu-movil{
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 600px){
+    .navegacion .menu-movil{
+        display: none;
+    }
+}
+
+.navegacion .menu-movil span{
+    height: 5px;
+    background-color: #000;
+    display: block;
+    width: 35px;
+    margin: 8px auto 0 auto;
+}
+
+.navegacion .navegacion-enlaces{
+    display: none;
+    background-color: #eee;
+}
+
+.navegacion .navegacion-enlaces.activo{
+    display: block;
+    animation: fadeIn .3s forwards;
+}
+
+@keyframes fadeIn{
+    from{transform: translateY(-200px) scale(.5);}
+    to{transform: translateY(0) scale(1);}
+}
+
+@media (min-width: 600px){
+    .navegacion .navegacion-enlaces,
+    .navegacion .navegacion-enlaces.activo{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    .navegacion-enlaces a,
+    .navegacion-enlaces .drop-menu{
+        flex: auto;
+    }
+}
+
+.navegacion a{
+    text-align: center;
+    display: block;
+    font-size: 1.5em;
+    margin: 5px 0 5px 0;
+}
+
+.navegacion a.activo{
+    color: rgb(39, 102, 173);
+}
+
+.drop-menu{
+    position: relative;
+    cursor:pointer;
+}
+
+.drop-menu .opciones{
+    display: none;
+    font-size: 1em;
+}
+.drop-menu .opciones.activo{
+    display: block;
+    position: absolute;
+    text-align: center;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #eee;
+}
+

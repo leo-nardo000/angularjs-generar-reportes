@@ -1,0 +1,141 @@
+<app-navegacion></app-navegacion>
+<h3>Editar Empresa</h3>
+<p>Los campos que contengan este simbolo (*) son obligatorios</p>
+<div id="message" *ngIf="messagebolExito;">
+    <div class="alert alert-success">
+        {{message.res}}
+    </div>
+</div>
+<div id="messageError" *ngIf="messagebolError;">
+    <div class="alert alert-danger">
+        {{message.res}}
+    </div>
+</div>
+
+<form #formularioModificarEmpresa="ngForm" (ngSubmit)="submit(formularioModificarEmpresa)">
+    <fieldset>
+        <legend>Buscar Empresa</legend>
+        <div class="campo">
+            <label>Buscar por RIF:</label>
+            <select name="buscar_rif" id="buscar_rif" class="u-full-width">
+            </select>
+        </div>
+        <button type="button" (click)="buscar()">Buscar</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>Informacion de la Empresa</legend>
+        <div class="row">
+            <div class="six columns">
+                <div class="campo">
+                    <label>(*) Razon Social:</label>
+                    <input type="text" name="razon_social" [(ngModel)]="empresa.razon_social" class="u-full-width">
+                </div>
+                <div class="campo">
+                    <label>(*) Dirección:</label>
+                    <textarea class="u-full-width" name="direccion" [(ngModel)]="empresa.direccion"></textarea>
+                </div>
+            </div>
+            <div class="six columns">
+                <div class="campo">
+                    <label>(*) RIF:</label>
+                    <input type="text" class="u-full-width" name="rif" [(ngModel)]="empresa.rif">
+                </div>
+                <div class="campo">
+                    <label>(*) Teléfono:</label>
+                    <input type="text" class="u-full-width" name="telefono" [(ngModel)]="empresa.telefono">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="four columns offset-by-four">
+                <input type="submit" class="button-primary u-full-width" value="Modificar Empresa">
+                <input type="button" (click)="eliminarEmpresa()" class="button u-full-width" value="Eliminar Empresa">
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Cargos de la Empresa</legend>
+        <div class="row">
+            <div class="six columns">
+                <div class="campo">
+                    <label>Cargos:</label>
+                    <select name="id_cargo" id="id_cargo" (change)="horarios()" class="u-full-width" [(ngModel)]="empresa.id_cargo">
+                        
+                    </select>
+                </div>
+            </div>
+            <div class="four columns botones">
+                <button 
+                    type="button" 
+                    (click)="modificar_cargo ? modificar_cargo=false : modificarCargo() " 
+                    class="u-pull-left">
+                    {{modificar_cargo ? "Agregar" : "Modificar" }}
+                </button>
+                <button type="button" (click)="eliminarCargo()" class="u-pull-right">Eliminar</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="six columns">
+                <div class="campo">
+                    <label>{{modificar_cargo ? "Modificar Cargo:" : "Agregar Cargo:" }}</label>
+                    <input type="text" class="u-full-width" id="cargo">
+                </div>
+            </div>
+            <div class="two columns botones">
+                <button 
+                    type="button" 
+                    (click)="modificar_cargo ? modificarCargoSeleccionado() : agregarCargo()" class="button-primary u-full-width"
+                >{{modificar_cargo ? "Modificar" : "Agregar" }}</button>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Horarios</legend>
+        <div class="row">
+            <div class="ten columns">
+                <label class="chequeos">Cantidad de Chequeos:</label>
+                <input type="radio" name="chequeo" id="chequeo_1" (click)="habilitarEntradas()" value="uno"> Uno
+                <input type="radio" name="chequeo" id="chequeo_2" checked (click)="habilitarEntradas()" value="dos"> Dos
+                <input type="button" value="Establecer" (click)="modificarHorario()">
+            </div>
+        </div>
+        <fieldset>
+            <legend>Primera Entrada:</legend>
+            <div class="row">
+                <div class="six columns">
+                    <div class="campo">
+                        <label class="chequeos">Hora de la primera Entrada:</label>
+                        <input type="time" name="primera_entrada" [(ngModel)]="empresa.primera_entrada">
+                    </div>
+                </div>
+                <div class="six columns">
+                    <div class="campo">
+                        <label class="chequeos">Hora de la primera Salida:</label>
+                        <input type="time" name="primera_salida" [(ngModel)]="empresa.primera_salida">
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <ng-container *ngIf="segundaEntrada">
+            <fieldset>
+                <legend>Segunda Entrada:</legend>
+                <div class="row">
+                    <div class="six columns">
+                        <div class="campo">
+                            <label class="chequeos">Hora de la Segunda Entrada:</label>
+                            <input type="time" name="segunda_entrada" [(ngModel)]="empresa.segunda_entrada">
+                        </div>
+                    </div>
+                    <div class="six columns">
+                        <div class="campo">
+                            <label class="chequeos">Hora de la Segunda Salida:</label>
+                            <input type="time" name="segunda_salida" [(ngModel)]="empresa.segunda_salida">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </ng-container>
+    </fieldset>
+</form>

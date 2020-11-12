@@ -1,0 +1,23 @@
+<h3>Control de Asistencia</h3>
+<div *ngIf="errorbol;">
+    <div class="alert alert-danger">
+        {{error.error}}
+    </div>
+</div>  
+<form #formSignIn="ngForm" (submit)="signinSubmit()" class="row">
+    <div class="six columns offset-by-three">
+        <fieldset>
+            <legend>Inicio de Sesión</legend>
+            <div class="u-full-width">
+                <label>Nombre de Usuario o Correo Electrónico</label>
+                <input [(ngModel)]="user.username" type="text" name="email" class="u-full-width">
+            </div>
+            <div class="u-full-width">
+                <label>Contraseña</label>
+                <input type="password" [(ngModel)]="user.password" name="password" class="u-full-width" id="name">
+            </div>
+            <input type="submit" class="u-full-width button-primary" value="Iniciar Sesión">
+        </fieldset>
+    </div>
+</form>
+

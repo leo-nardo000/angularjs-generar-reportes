@@ -1,0 +1,12 @@
+.botones{
+    margin-top: 3rem;
+}
+
+.chequeos{
+    display: inline-block;
+    margin-right: 2rem;
+}
+
+input[type="radio"]{
+    margin-left: 2rem;
+}

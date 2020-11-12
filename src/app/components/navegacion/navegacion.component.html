@@ -1,0 +1,26 @@
+<nav class="navegacion">
+    <div id="menu-movil" class="menu-movil">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div #enlaces class="navegacion-enlaces" id="navegacion-enlaces">
+        <ng-container *ngIf="usuario_reporte; else usuario_admin">
+            <a routerLink="/inicio/asistencia" routerLinkActive="activo">Asistencia</a>
+            <a (click)="logOut()" routerLink="">Cerrar Sesión</a>
+        </ng-container>
+        <ng-template #usuario_admin>
+            <a routerLink="/inicio/persona" routerLinkActive="activo">Persona</a>
+            <a routerLink="/inicio/modificar_empresa" routerLinkActive="activo">Empresa</a>
+            <a routerLink="/inicio/asistencia" routerLinkActive="activo">Asistencia</a>
+            <div class="drop-menu" (click)="dropMenu()">
+                <a>Registros</a>
+                <div class="opciones">
+                    <a routerLink="/inicio/registrar_empresa" routerLinkActive="activo">Registrar Empresa</a>
+                    <a routerLink="/inicio/signup" routerLinkActive="activo">Registrar Persona</a>
+                </div>
+            </div>
+            <a (click)="logOut()" routerLink="">Cerrar Sesión</a>
+        </ng-template>
+    </div>
+</nav>

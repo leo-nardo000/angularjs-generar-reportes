@@ -1,0 +1,113 @@
+<app-navegacion></app-navegacion>
+<h3>Registrar Empleado</h3>
+<div id="message" *ngIf="messagebolExito;">
+    <div class="alert alert-success">
+        {{message.res}}
+    </div>
+</div>
+<div id="messageError" *ngIf="messagebolError;">
+    <div class="alert alert-danger">
+        {{message.res}}
+    </div>
+</div> 
+<form #signupForm="ngForm" (ngSubmit)="signupSubmit(signupForm)">
+    <p>Los campos que contengan este simbolo (*) son obligatorios</p>
+    <div class="row">
+        <fieldset class="six columns">
+            <legend>Informacion del Empleado</legend>
+            <div class="campo">
+                <label>(*) Empresa:</label>
+                <select (change)="seleccionarCargo()" name="id_empresa" id="selectEmpresa" class="u-full-width" [(ngModel)]="newUser.id_empresa">
+                    <option value="" selected disabled>-- Seleccione una empresa --</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label>(*) Cargo:</label>
+                <select name="id_cargo" id="selectCargo" [(ngModel)]="newUser.id_cargo" class="u-full-width">
+                    <option value="" selected disabled>-- Seleccione un Cargo --</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label>(*) Tipo:</label>
+                <select name="tipo_usuario" id="tipo_usuario" (change)="inicioSesion()" [(ngModel)]="newUser.tipo_usuario" class="u-full-width">
+                    <option value="" selected disabled>-- Seleccione un Tipo --</option>
+                    <option value="1">NORMAL</option>
+                    <option value="2">ADMIN</option>
+                    <option value="3">REPORTES</option>
+                </select>
+            </div>
+        </fieldset>
+        <fieldset class="six columns">
+            <legend>Informacion de Inicio de Sesión</legend>
+            <div class="campo">
+                <label>Usuario:</label>
+                <input type="text" [(ngModel)]="newUser.username" name="username" class="u-full-width disabled">
+            </div>
+            <div class="campo">
+                <label>Contraseña:</label>
+                <input type="text" [(ngModel)]="newUser.pass" name="pass" class="u-full-width disabled">
+            </div>
+            <div class="campo">
+                <label>Repetir Contraseña:</label>
+                <input type="text" [(ngModel)]="newUser.confirmar_pass" name="confirmar_pass" class="u-full-width disabled">
+            </div>
+        </fieldset>
+    </div>
+    <div class="row">
+        <fieldset class="six columns">
+            <legend>Identificación</legend>
+            <div class="campo">
+                <label>(*) Primer Nombre:</label>
+                <input type="text" [(ngModel)]="newUser.primer_nombre" name="primer_nombre" class="u-full-width">
+            </div>
+            <div class="campo">
+                <label>Segundo Nombre:</label>
+                <input type="text" [(ngModel)]="newUser.segundo_nombre" name="segundo_nombre" class="u-full-width">
+            </div>
+            <div class="campo">
+                <label>(*) Primer Apellido:</label>
+                <input type="text" [(ngModel)]="newUser.primer_apellido" name="primer_apellido" class="u-full-width">
+            </div>
+            <div class="campo">
+                <label>Segundo Apellido:</label>
+                <input type="text" [(ngModel)]="newUser.segundo_apellido" name="segundo_apellido" class="u-full-width">
+            </div>
+            <div class="campo">
+                <label>(*) Identificación:</label>
+                <input type="text" [(ngModel)]="newUser.identificacion" name="identificacion" class="u-full-width">
+            </div>
+        </fieldset>
+        <fieldset class="six columns">
+            <legend>Dirección y Contacto</legend>
+            <div class="campo">
+                <label>Dirección:</label>
+                <textarea name="direccion" [(ngModel)]="newUser.direccion" class="u-full-width"></textarea>
+            </div>
+            <div class="campo">
+                <label>Numero de Teléfono:</label>
+                <input type="text" [(ngModel)]="newUser.num_telefono" name="num_telefono" class="u-full-width">
+            </div>
+            <div class="campo">
+                <label>(*) Correo Primario:</label>
+                <input type="text" name="correo_primario" [(ngModel)]="newUser.correo_primario" class="u-full-width">
+            </div>
+            <div class="campo">
+                <label>Correo Segundario:</label>
+                <input type="text" name="correo_segundario" [(ngModel)]="newUser.correo_secundario" class="u-full-width">
+            </div>
+        </fieldset>
+    </div>
+    <div class="row">
+        <fieldset class="six columns">
+            <legend>Otros Datos</legend>
+            <div class="campo">
+                <label>(*) Fecha de Nacimiento:</label>
+                <input type="date" [(ngModel)]="newUser.fecha_nac" class="u-full-width" name="fecha_nac">
+            </div>
+        </fieldset>
+        <div class="columns six">
+            <a (click)="resetForm(signupForm)" class="u-pull-left button">Cancelar</a>
+            <button type="submit" class="button-primary u-pull-right">Registrar</button>
+        </div>
+    </div>
+</form>

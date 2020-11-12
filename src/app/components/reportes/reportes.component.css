@@ -1,0 +1,4 @@
+label,input,select{
+    display: inline-block;
+    margin-right: 2rem;
+}

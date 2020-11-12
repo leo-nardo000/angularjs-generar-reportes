@@ -1,0 +1,143 @@
+<app-navegacion></app-navegacion>
+<h3>Editar Empleado</h3>
+<div id="message" *ngIf="messagebolExito;">
+    <div class="alert alert-success">
+        {{message.res}}
+    </div>
+</div>
+<div id="messageError" *ngIf="messagebolError;">
+    <div class="alert alert-danger">
+        {{message.res}}
+    </div>
+</div>
+<form #formularioPersona="ngForm" (ngSubmit)="submit(formularioPersona)">
+    <p>Los campos que contengan este simbolo (*) son obligatorios</p>
+    <fieldset>
+        <legend>Buscar Persona</legend>
+        <div class="campo">
+            <label>Identificacion</label>
+            <select name="buscar_identificacion" id="buscar_identificacion" class="u-full-width">
+                <option value="" selected disabled="true">-- Seleccione --</option>
+            </select>
+        </div> 
+        <button type="button" (click)="buscar()">Buscar</button>
+    </fieldset>
+
+    <fieldset>
+        <legend>Informacion Personal</legend>
+        <div class="row">
+            <div class="six columns">
+                <div class="campo">
+                    <label>(*) Primer Nombre:</label>
+                    <input type="text" name="primer_nombre" class="u-full-width" [(ngModel)]="persona.primer_nombre">
+                </div>
+                <div class="campo">
+                    <label>(*) Primer Apellido:</label>
+                    <input type="text" name="primer_apellido" class="u-full-width" [(ngModel)]="persona.primer_apellido">
+                </div>
+                <div class="campo">
+                    <label>(*) Identificación:</label>
+                    <input type="text" name="identificacion" class="u-full-width" [(ngModel)]="persona.identificacion">
+                </div>
+            </div>
+            <div class="six columns">
+                <div class="campo">
+                    <label>Segundo Nombre:</label>
+                    <input type="text" name="segundo_nombre" class="u-full-width" [(ngModel)]="persona.segundo_nombre">
+                </div>
+                <div class="campo">
+                    <label>Segundo Apellido:</label>
+                    <input type="text" name="segundo_apellido" class="u-full-width" [(ngModel)]="persona.segundo_apellido">
+                </div>
+                <div class="campo">
+                    <label>(*) Fecha de Nacimiento:</label>
+                    <input type="date" name="fecha_nac" class="u-full-width" [(ngModel)]="persona.fecha_nac">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="eight columns">
+                <label>Huella Digital</label>
+                <select class="u-full-width" id="selectHuellas" name="huella_digital">
+                    <option value="" selected disabled="true">-- Seleccione --</option>
+                </select>
+            </div>
+            <div class="four columns">
+                <button type="button" class="u-pull-left">Capturar</button>
+                <button type="button" class="u-pull-right">Modificar</button>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Dirección y Contacto</legend>
+        <div class="row">
+            <div class="six columns">
+                <div class="campo">
+                    <label>Dirección:</label>
+                    <textarea class="u-full-width" name="direccion" [(ngModel)]="persona.direccion"></textarea>
+                </div>
+                <div class="campo">
+                    <label>Numero de Teléfono:</label>
+                    <input type="text" name="telefono" class="u-full-width" [(ngModel)]="persona.num_telefono">
+                </div>
+                <div class="campo">
+                    <label>(*) Correo Primario:</label>
+                    <input type="email" name="correo_primario" class="u-full-width" [(ngModel)]="persona.correo_primario">
+                </div>
+                <div class="campo">
+                    <label>Correo Secundario:</label>
+                    <input type="email" name="correo_secundario" class="u-full-width" [(ngModel)]="persona.correo_secundario">
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Información de Acceso</legend>
+            <div class="row">
+                <div class="six columns">
+                    <div class="campo">
+                        <label>Nombre de Usuario:</label>
+                        <input type="text" name="username" class="u-full-width" [(ngModel)]="persona.username">
+                    </div>
+                    <div class="campo">
+                        <label>Contraseña:</label>
+                        <label>(No editar para no modificar)</label>
+                        <input type="text" name="pass" class="u-full-width" [(ngModel)]="persona.pass">
+                    </div>
+                </div>
+                <div class="six columns">
+                    <div class="campo">
+                        <label>Empresa:</label>
+                        <select name="id_empresa" id="selectEmpresa" (change)="seleccionarCargo()" class="u-full-width" [(ngModel)]="persona.id_empresa">
+                            
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label>Cargo:</label>
+                        <select name="id_cargo" id="selectCargo" class="u-full-width"[(ngModel)]="persona.id_cargo">
+
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label>(*) Activo:</label>
+                        <select class="u-full-width" id="selectActivo" name="activo" [(ngModel)]="persona.activo">
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <label>(*) Tipo:</label>
+                        <select class="u-full-width" id="selectTipo" name="tipo_usuario" [(ngModel)]="persona.tipo_usuario">
+                            <option value="" selected disabled="true">-- Seleccione --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+    </fieldset>
+    <div class="row">
+        <div class="four columns offset-by-four">
+            <input type="submit" class="button-primary u-full-width" value="Modificar">
+            <input type="button" class="button u-full-width" value="Eliminar" (click)="eliminarUsuario()">
+        </div>
+    </div>
+</form>

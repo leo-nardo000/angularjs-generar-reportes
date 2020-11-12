@@ -1,0 +1,83 @@
+<app-navegacion></app-navegacion>
+<h3>Reportes</h3>
+<div id="message" *ngIf="messagebolExito;">
+    <div class="alert alert-success">
+        {{message.res}}
+    </div>
+</div>
+<div id="messageError" *ngIf="messagebolError;">
+    <div class="alert alert-danger">
+        {{message.res}}
+    </div>
+</div>
+<form #formularioReportes="ngForm" (ngSubmit)="submit()">
+    <div class="row">
+        <fieldset class="twelve columns">
+            <legend>Generar Reportes para todos los empleados</legend>
+            <div class="campos">
+                <label>De:</label>
+                <input type="date" name="desde" [(ngModel)]="reporte.desde">
+
+                <label>a:</label>
+                <input type="date" name="hasta" [(ngModel)]="reporte.hasta">
+
+                <label>para la empresa:</label>
+                <select name="empresa" id="empresa" [(ngModel)]="reporte.empresa">
+                </select>
+
+                <label>Turno:</label>
+                <select name="turno" id="turno" [(ngModel)]="reporte.turno">
+                    <option value="" selected disabled>-- Seleccione --</option>
+                    <option value="todos">TODOS</option>
+                    <option value="diurno">DIURNO</option>
+                    <option value="mixto">MIXTO</option>
+                    <option value="nocturno">NOCTURNO</option>
+                </select>
+            </div>
+            <div class="row">
+                <div class="six columns offset-by-three ">
+                    <button type="button" class="u-pull-left" (click)="generarReporteEmpresaPdf()">Generar PDF</button>
+                    <button type="button" class="u-pull-right">Excel</button>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <fieldset class="row">
+        <legend>Buscar Empleado:</legend>
+        <div class="six columns">
+            <div class="campo">
+                <label>Buscar:</label>
+                <select name="empleado" id="empleado" (change)="verificarBuscar()" [(ngModel)]="reporte.empleado" class="u-full-width">
+                    <option value="" selected disabled>-- Seleccione --</option>
+                </select>
+            </div>
+            <button type="button" (click)="buscarEmpleado()">Buscar</button>
+        </div>
+        <div class="five columns">
+            <div id="empleado">Empleado: <span></span></div>
+            <br>
+            <div id="cargo">Cargo: <span></span></div>
+        </div>
+    </fieldset>
+    <div class="row">
+        <fieldset class="six columns">
+            <legend>Buscar por fecha:</legend>
+            <div class="campo">
+                <input type="date" name="fecha" id="fecha" class="u-full-width">
+                <input type="button" value="Buscar">
+            </div>
+        </fieldset>
+        <fieldset class="six columns">
+            <legend>Generar Reporte</legend>
+            <div class="campo">
+                <label>De:</label>
+                <input type="date" name="empleado_desde" [(ngModel)]="reporte.empleado_desde">
+
+                <label>a:</label>
+                <input type="date" name="empleado_hasta" [(ngModel)]="reporte.empleado_hasta">
+            </div>
+            <input type="button" (click)="generarReporteEmpleadoPdf()" class="u-pull-left" value="Generar PDF">
+            <input type="button" class="u-pull-right" value="Excel">
+        </fieldset>
+    </div>
+</form>

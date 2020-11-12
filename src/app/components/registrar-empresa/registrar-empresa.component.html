@@ -1,0 +1,40 @@
+<app-navegacion></app-navegacion>
+<h3>Registrar Empresa</h3>
+<p>Todos los campos son obligatorios</p>
+<div id="message" *ngIf="messagebolExito;">
+    <div class="alert alert-success">
+        {{message.res}}
+    </div>
+</div>
+<div id="messageError" *ngIf="messagebolError;">
+    <div class="alert alert-danger">
+        {{message.res}}
+    </div>
+</div>   
+<form #formRegistrarEmpresa="ngForm" (ngSubmit)="submit(formRegistrarEmpresa)" class="row">
+    <div class="six columns offset-by-three">
+        <fieldset>
+            <legend>Registrar Empresa:</legend>
+            <div class="u-full-width">
+                <label>Razón Social</label>
+                <input [(ngModel)]="empresa.razon_social" type="text" name="razon_social" class="u-full-width">
+            </div>
+            <div class="u-full-width">
+                <label>RIF:</label>
+                <input type="text" [(ngModel)]="empresa.rif" name="rif" class="u-full-width">
+            </div>
+            <div class="u-full-width">
+                <label>Direccion:</label>
+                <textarea name="direccion" [(ngModel)]="empresa.direccion" class="u-full-width"></textarea>
+            </div>
+            <div class="u-full-width">
+                <label>Telefono:</label>
+                <input type="text" [(ngModel)]="empresa.telefono" name="telefono" class="u-full-width">
+            </div>
+            <input type="submit" class="button-primary u-full-width" value="Registrar">
+                <a (click)="resetForm(formRegistrarEmpresa)" class="button u-full-width">Cancelar</a>
+        </fieldset>
+    </div>
+</form>
+
+

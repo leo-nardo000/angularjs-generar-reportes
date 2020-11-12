@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+/* ! globales */
+h3{
+    text-align: center;
+}
+
+textarea{
+    resize: none;
+    overflow-y: scroll;
+    height: 7.5em;
+}
+p{
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+/* ! utilidades */
+
+/* ! alertas */
+.alert{
+    margin: 2rem 0;
+    padding: 16px 0;
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+    position:fixed;
+    top: 1rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.alert-danger{
+    background-color: #f8d7da;
+    color: #941c24;
+}
+
+.alert-success{
+    background-color: #5dc966;
+    color: #107207;
+}
